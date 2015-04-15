@@ -4,7 +4,7 @@ include("LetterList.php");
 
 class FileParser {
 	// returns an array with the first element as
-	// the word search double array (really array of strings) and the
+	// the word search double array and the
 	// second as the root LetterList.
 	public static function parse($fileName) {
 		// initial file work and such
