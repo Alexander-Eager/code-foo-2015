@@ -18,13 +18,13 @@ class WordSearchSolver {
 		// now keep going in $direction while the letter at each pos
 		// could make a word
 		$ans = array();
-		$word = ""
+		$word = "";
 		$list = $rootList;
 		$row = $r; // these are the ones that will change
 		$col = $c; // as we move along $direction
 		while (0 <= $row && $row < $numRows
 			&& 0 <= $col && $col < $numCols
-			&& $list->hasLetter($puzzle[$row, $col])) {
+			&& $list->hasLetter($puzzle[$row][$col])) {
 			
 			$letter = $list->getLetter($puzzle[$row][$col]);
 			$word .= $letter->getCharacter();
@@ -32,8 +32,6 @@ class WordSearchSolver {
 			// check to see if we found a word
 			if ($letter->isEndOfWord()) {
 				$ans[] = new WordLocation($word, $r, $c, $row, $col);
-				// TODO make this work
-				// $rootList->deleteWord($word);
 			}
 
 			$list = $letter->getNextLettersInWords();
@@ -62,6 +60,10 @@ class WordSearchSolver {
 						$arr = WordSearchSolver::lookForWord(
 							$puzzle, $rootList,
 							$r, $c, $dRow, $dCol);
+						// delete all words in $arr from rootList
+						foreach ($arr as $wordLoc) {
+							$rootList->deleteWord($wordLoc->getWord());
+						}
 						// append $arr to $ans
 						$ans = array_merge($ans, $arr);
 					}
@@ -73,7 +75,7 @@ class WordSearchSolver {
 	}
 
 	// print out the solution to the given word search
-	private static function printSolution($solution) {
+	private static function printSolution($puzzle, $solution) {
 		// print out the word search with positions and such laid out
 		echo "<div id='leftSide'>";
 		echo "<pre><code>";
@@ -85,28 +87,28 @@ class WordSearchSolver {
 		// based on the word locations,
 		// make some chars in $puzzle bold
 		foreach ($solution as $wordLoc) {
-			// figure out start point and dx, dy
+			// figure out start point and $dRow, $dCol
 			$r = $wordLoc->getStartRow();
 			$c = $wordLoc->getStartCol();
-			$dy = 0;
+			$dRow = 0;
 			if ($wordLoc->getEndRow() > $r) {
-				$dy = 1;
+				$dRow = 1;
 			} else if ($wordLoc->getEndRow() < $r) {
-				$dy = -1;
+				$dRow = -1;
 			}
-			$dx = 0;
+			$dCol = 0;
 			if ($wordLoc->getEndCol() > $c) {
-				$dx = 1;
+				$dCol = 1;
 			} else if ($wordLoc->getEndCol() < $c) {
-				$dx = -1;
+				$dCol = -1;
 			}
-			// move in that direction and add <em> tags
+			// move in that direction and add <strong> tags
 			while ($r != $wordLoc->getEndRow()
 					|| $c != $wordLoc->getEndCol()) {
-				// may add excess <em> tags, but that's ok
+				// may add excess <strong> tags, but that's ok
 				$puzzle[$r][$c] = "<strong>" . $puzzle[$r][$c] . "</strong>";
-				$r += $dy;
-				$c += $dx;
+				$r += $dRow;
+				$c += $dCol;
 			}
 			// get the last char
 			$puzzle[$r][$c] = "<strong>" . $puzzle[$r][$c] . "</strong>";
@@ -159,7 +161,6 @@ class WordSearchSolver {
 		echo "</table>";
 		echo "</div>";
 	}
-	}
 
 	// parse, solve and print out the solution to the given word search
 	public static function solveAndPrintSolution($fileName) {
@@ -172,7 +173,7 @@ class WordSearchSolver {
 		$solution = WordSearchSolver::solve($puzzle, $rootList);
 
 		// print it out
-		WordSearchSolver::printSolution($solution);
+		WordSearchSolver::printSolution($puzzle, $solution);
 	}
 }
 

@@ -41,6 +41,41 @@ class LetterList {
 			$letter->getNextLettersInWords()->addWord(substr($word, 1));
 		}
 	}
+
+	// remove a word from this LetterList
+	// returns true if the Letter for the last character
+	//	in $word was removed from the tree, false otherwise
+	public function deleteWord($word) {
+		// if the character is not there, return false
+		if (!$this->hasLetter($word[0])) {
+			return false;
+		}
+
+		$letter = $this->getLetter($word[0]);
+
+		// if we are on the last character in $word,
+		//	change $letter->isEndOfWord(), and look
+		//	at removing this letter
+		if (strlen(utf8_decode($word)) == 1) {
+			$letter->setIsEndOfWord(false);
+			// no children => remove this letter
+			if (count($letter->getNextLettersInWords()) == 0) {
+				unset($listOfLetters[$letter->getCharacter()]);
+				return true;
+			}
+			return false;
+		} else {
+			$ans = $letter->getNextLettersInWords()
+				->deleteWord(substr($word, 1));
+
+			// no children and not end of word => remove this letter
+			if (count($letter->getNextLettersInWords()) == 0
+				&& !$letter->isEndOfWord()) {
+				unset($listOfLetters[$letter->getCharacter()]);
+			}
+			return $ans;
+		}
+	}
 }
 
 ?>

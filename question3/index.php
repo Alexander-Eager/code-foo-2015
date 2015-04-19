@@ -30,8 +30,8 @@
 	<h2>Note: makes use of PHP, so use Apache or the like.</h2>
 
 	<?php
-		include("main.php");
-		solveAndPrintSolution("word-search.txt");
+		include("WordSearchSolver.php");
+		WordSearchSolver::solveAndPrintSolution("word-search.txt");
 	?>
 
 </body>
