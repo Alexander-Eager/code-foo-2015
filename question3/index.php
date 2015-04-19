@@ -16,7 +16,7 @@
 		}
 		code {
 			font-family: monospace;
-			font-size: 20;
+			font-size: 1.5em;
 		}
 		strong {
 			font-weight: bold;
