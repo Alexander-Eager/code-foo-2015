@@ -1,6 +1,10 @@
 IGN's Code-Foo 2015
 =============
 
+This is Alexander Eager's submission for IGN's Code-Foo 2015. Inside each of the subfolders, you will find an answer to a single question, with design details and answer descriptions in the README. Below are the instructions originally included in this project fork.
+
+--------------
+
 For more information on IGN's Code-Foo 2015, visit [ign.com/code-foo/2015] (http://ign.com/code-foo/2015).
 
 To apply to Code-Foo 2015, fork this repository and answer all questions. Push your answers to your fork and send us an email at ign_code-foo@ign.com to let us know you're finished.
