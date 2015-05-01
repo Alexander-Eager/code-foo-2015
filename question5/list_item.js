@@ -1,20 +1,44 @@
-
 // creates a ListItem object with the given values
 function ListItem(numInList, isArticle, title, subtitle,
 	time, url) {
 	this.numberInList = numInList;
 	this.isArticle = isArticle;
-	this.title = title;
-	this.subtitle = subtitle;
-	this.time = time;
+
+	if (title !== undefined) {
+		this.title = title;
+	} else {
+		this.title = "No Title";
+	}
+
+	if (subtitle !== undefined) {
+		this.subtitle = subtitle;
+	} else {
+		this.subtitle = "";
+	}
+
+	if (time !== undefined) {
+		this.time = time;
+	} else {
+		this.time = "";
+	}
+
 	this.url = url;
+
 	this.getHtmlElement = function() {
-		// for question 4, this is just a bunch of text
-		// in question 5, I will edit this to make the proper
-		// formatting for the list
-		return "" + this.numberInList + ": " + this.title +
-			"<br/>" + this.subtitle + "<br/>" + this.time +
-			"<br/>" + this.url + "<br/>";
+		// this is just the HTML for the ListItem when you want to display it
+		var ans = "<tr onclick='location.href = \"" + this.url + "\"'>";
+		if (this.numberInList < 10) {
+			ans += "<td class='left'>0" + this.numberInList + "</td>";
+		} else {
+			ans += "<td class='left'>" + this.numberInList + "</td>";
+		}
+		ans += "<td class='middle'>";
+		ans += "<div class='title'>" + this.title + "</div>";
+		ans += "<div class='subtitle'>" + this.subtitle + "</div>";
+		ans += "</td>";
+		ans += "<td class='right'>" + this.time + "</td>";
+		ans += "</tr>";
+		return ans;
 	}
 }
 
@@ -121,27 +145,48 @@ function retrieveList(wantArticles, startIndex, numResults,
 	});
 }
 
-// interprets the formOnLeft for question 4
-function generateListFromForm() {
-	// get the values from the form (not actually a form tag though)
-	var action = $("input[name='action']:checked").val();
-	var startIndex = $("input[name='startIndex']").val();
-	var numResults = $("input[name='numResults']").val();
+// loads 10 more results of whatever wantArticles is
+function loadMore(wantArticles) {
+	// get the starting index
+	var startIndex = document.getElementById("load_more").numResults + 1;
+	// retrieve and display the list of articles
+	retrieveList(wantArticles, startIndex, 10, function(list) {
+		var newInnerHTML = "";
+		for (var i = 0; i < list.length; i ++) {
+			newInnerHTML += list[i].getHtmlElement();
+		}
+		document.getElementById("list").innerHTML += newInnerHTML;
+	});
+	document.getElementById("load_more").numResults += 10;
+}
 
-	var wantArticles = (action === "articles");
-	startIndex = parseInt(startIndex);
-	numResults = parseInt(numResults);
+// loads a list of 10 videos initially
+function loadList(wantArticles) {
+	// change the title
+	var title = wantArticles ? "ARTICLES" : "VIDEOS";
+	document.getElementById("title").innerHTML = title;
 
-	// get the list of articles using those values and get their text
-	retrieveList(wantArticles, startIndex, numResults,
-		function(list) {
-			var newInnerHTML = "";
-			for (var i = 0; i < list.length; i ++) {
-				newInnerHTML += list[i].getHtmlElement() + "<br/><br/>";
-			}
+	// change the videos/articles button
+	var switchButton = document.getElementById("switch");
+	switchButton.onclick = function() {
+		loadList(!wantArticles);
+	};
+	if (wantArticles) {
+		switchButton.style.background = "url(/article_on.png)";
+	} else {
+		switchButton.style.background = "url(/video_on.png)";
+	}
 
-			// put that text in the listOnRight
-			document.getElementById("listOnRight").innerHTML =
-				newInnerHTML;
-		});
+	// change the load_more button's text and onclick
+	var loadMoreButton = document.getElementById("load_more");
+	var loadMoreText = wantArticles ? "articles" : "videos";
+	loadMoreButton.innerHTML = "Load more " + loadMoreText;
+	loadMoreButton.numResults = 0;
+	loadMoreButton.onclick = function() {
+		loadMore(wantArticles);
+	};
+
+	// remove all current list items and load more
+	document.getElementById("list").innerHTML = "";
+	loadMore(wantArticles);
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>
+		IGN Code-Foo Question 5
+	</title>
+	<link rel="stylesheet" type="text/css" href="index.css"/>
+</head>
+
+<body>
+	<h1 id='title'></h1>
+
+	<div id='white_box'>
+		<div id='button_box'>
+			<button id='switch' type='button' onClick=''>
+				<pre>  VIDEOS          ARTICLES</pre>
+			</button>
+		</div>
+
+		<table id='list'>
+		</table>
+
+		<div id='load_more' numResults=0>
+		</div>
+	</div>
+
+
+	<script src='//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'>
+	</script>
+
+	<script src='/list_item.js'></script>
+
+	<script>
+		// initially, we want the page to open up on videos
+		loadList(false);
+	</script>
+</body>
+
+</html>
