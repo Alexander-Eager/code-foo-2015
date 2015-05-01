@@ -166,15 +166,19 @@ function loadList(wantArticles) {
 	var title = wantArticles ? "ARTICLES" : "VIDEOS";
 	document.getElementById("title").innerHTML = title;
 
-	// change the videos/articles button
-	var switchButton = document.getElementById("switch");
-	switchButton.onclick = function() {
-		loadList(!wantArticles);
-	};
+	// change the videos/articles buttons
+	var videosButton = document.getElementById("videosButton");
+	var articlesButton = document.getElementById("articlesButton");
 	if (wantArticles) {
-		switchButton.style.background = "url(/article_on.png)";
+		articlesButton.style["background-color"] = "#BD1313";
+		articlesButton.style["color"] = "#FFFFFF";
+		videosButton.style["background-color"] = "#FFFFFF";
+		videosButton.style["color"] = "#BD1313";
 	} else {
-		switchButton.style.background = "url(/video_on.png)";
+		articlesButton.style["background-color"] = "#FFFFFF";
+		articlesButton.style["color"] = "#BD1313";
+		videosButton.style["background-color"] = "#BD1313";
+		videosButton.style["color"] = "#FFFFFF";
 	}
 
 	// change the load_more button's text and onclick

@@ -5,7 +5,8 @@
 	<title>
 		IGN Code-Foo Question 5
 	</title>
-	<link rel="stylesheet" type="text/css" href="index.css"/>
+	<link rel='stylesheet' type='text/css' href='index.css'/>
+	<meta name='viewport' content='width=device-width, initial-scale=1'/>
 </head>
 
 <body>
@@ -13,8 +14,11 @@
 
 	<div id='white_box'>
 		<div id='button_box'>
-			<button id='switch' type='button' onClick=''>
-				<pre>  VIDEOS          ARTICLES</pre>
+			<button id='videosButton' onClick='loadList(false);'>
+				VIDEOS
+			</button>
+			<button id='articlesButton' onClick='loadList(true);'>
+				ARTICLES
 			</button>
 		</div>
 

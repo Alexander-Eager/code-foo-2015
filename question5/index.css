@@ -1,48 +1,137 @@
 body {
 	background-color: #040404;
 	font-family: arial;
+	font-size: 1em;
 }
 
 h1 {
 	color: #F6F6F6;
 	text-align: left;
-	text-indent: 30px;
-}
-
-pre {
-	padding-bottom: 10px;
+	text-indent: 10%;
+	/* Maybe make indent better later */
+	font-size: 2em;
 }
 
 #white_box {
 	background-color: #FFFFFF;
+
+	border-radius: .5em .5em .5em .5em;
+	
 	padding-top: 20px;
 	padding-left: 0px;
 	padding-right: 0px;
-	padding-bottom: 5px;
-	margin-left: 20px;
-	margin-right: 20px;
+	padding-bottom: 8px;
+	
+	margin-left: 1%;
+	margin-right: 1%;
 }
 
 #button_box {
-	padding-top: 0px;
-	padding-bottom: 10px;
 	width: 100%;
 	text-align: center;
 }
 
-#switch {
-	width: 584px;
-	height: 62px;
-	text-align: center;
-	font-size: 2em;
-	font-family: arial;
-	outline: none;
-	border: none;
+
+
+@media(min-width: 370px) {
+	#articlesButton {
+		margin-left: -2px;
+		margin-right: auto;
+		
+		width: 40%;
+		height: 2em;
+
+		border-style: solid;
+		border-width: 3px;
+		border-color: #BD1313;
+		border-collapse: collapse;
+		
+		border-top-left-radius: 0px;
+		border-bottom-left-radius: 0px;
+		border-top-right-radius: 1em;
+		border-bottom-right-radius: 1em;
+
+		text-align: center;
+		vertical-align: middle;
+		font-size: 1.25em;
+		font-weight: bold;
+	}
+
+	#videosButton {
+		margin-left: auto;
+		margin-right: -2px;
+
+		width: 40%;
+		height: 2em;
+
+		border-style: solid;
+		border-width: 3px;
+		border-color: #BD1313;
+		border-collapse: collapse;
+		
+		border-top-left-radius: 1em;
+		border-bottom-left-radius: 1em;
+		border-top-right-radius: 0px;
+		border-bottom-right-radius: 0px;
+
+		text-align: center;
+		vertical-align: middle;
+		font-size: 1.25em;
+		font-weight: bold;
+	}
+}
+
+@media(max-width: 369px) {
+	#articlesButton {
+		margin-left: -2px;
+		margin-right: auto;
+		
+		width: 40%;
+		height: 2em;
+
+		border-style: solid;
+		border-width: 3px;
+		border-color: #BD1313;
+		border-collapse: collapse;
+		
+		border-top-left-radius: 0px;
+		border-bottom-left-radius: 0px;
+		border-top-right-radius: 1em;
+		border-bottom-right-radius: 1em;
+
+		text-align: center;
+		vertical-align: middle;
+		font-size: 1em;
+		font-weight: bold;
+	}
+
+	#videosButton {
+		margin-left: auto;
+		margin-right: -2px;
+
+		width: 40%;
+		height: 2em;
+
+		border-style: solid;
+		border-width: 3px;
+		border-color: #BD1313;
+		border-collapse: collapse;
+		
+		border-top-left-radius: 1em;
+		border-bottom-left-radius: 1em;
+		border-top-right-radius: 0px;
+		border-bottom-right-radius: 0px;
+
+		text-align: center;
+		vertical-align: middle;
+		font-size: 1em;
+		font-weight: bold;
+	}
 }
 
 table {
-	padding-left: 0px;
-	padding-right: 0px;
+	padding-left: 3px;
+	padding-right: 3px;
 }
 
 td {
@@ -67,13 +156,14 @@ td {
 .left {
 	color: #434343;
 	text-align: center;
+	font-weight: bold;
 	width: 50px;
 	border-bottom-style: dashed;
 }
 
 .middle {
 	text-align: left;
-	width: auto;
+	width: 100%;
 	border-bottom-style: solid;
 	overflow: auto;
 }
@@ -88,8 +178,10 @@ td {
 }
 
 .right {
+	padding-left: -5px;
 	color: #888888;
 	text-align: center;
+	font-weight: bold;
 	width: auto;
 	border-bottom-style: solid;
 }
@@ -98,7 +190,7 @@ td {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	text-align: left;
-	text-indent: 85px;
+	text-indent: 56px;
 	width: 100%;
 	color: #B5B5B5;
 }
