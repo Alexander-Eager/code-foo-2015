@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		IGN Code-Foo Question 4
+	</title>
+	<style>
+		#formOnLeft {
+			width: 20%;
+			float: left;
+			text-align: right;
+		}
+		#spaceInMiddle {
+			width: 5%;
+		}
+		#listOnRight {
+			width: 75%;
+			float: right;
+			text-align: left;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>
+		IGN Code-Foo Question 4
+	</h1>
+
+	NOTE: This does not do any input-checks (so please only input positive
+	integers). I thought getting to work on question 5, where I wouldn't
+	have this problem anyway, would be more important. Also, there will
+	sometimes be an "undefined" in the resulting list; in the application made
+	in question 5, these are filtered out, but I'm leaving them here in question
+	4 to show that I did try to get that data (even though it didn't exist).
+	<br/><br/>
+
+	<div id='formOnLeft'>
+		<!-- First, radio buttons for selecting what to fetch -->
+		<input type='radio' name='action' value='articles' checked/> Articles
+		<br/>
+		<input type='radio' name='action' value='videos'/> Videos
+		<br/>
+
+		<!-- Now, boxes for integer inputs -->
+		Start Index: <input type='text' name='startIndex'/>
+		<br/>
+		Number of Results: <input type='text' name='numResults'/>
+		<br/>
+
+		<!-- Finally, the submit button -->
+		<button type='button' onClick='generateListFromForm();'>Submit</button>
+	</div>
+
+	<div id='spaceInMiddle'>
+		<!-- Just empty space to make the page easier to read -->
+	</div>
+
+	<div id='listOnRight'>
+		<!-- Initially empty -->
+	</div>
+
+	<script src='//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'>
+	</script>
+
+	<script src='/list_item.js'></script>
+</body>
+
+</html>
