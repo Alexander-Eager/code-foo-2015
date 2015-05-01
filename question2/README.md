@@ -25,6 +25,10 @@ From there, you just have to do some math to come out with the answer:
 
 So the number of ping pong balls that you can fit in a 747 is about _**58.6 million**_.
 
+### What if there are seats?
+
+If there are seats, you would basically follow the same procedure, but you would subtract off the combined volume of all of the seats from the volume of the 747 from above. That means you would need to estimate the dimensions of a seat.
+
 [747 volume]: http://www.boeing.com/resources/boeingdotcom/commercial/747/design-highlights/assets/images/freighter/characteristics/chart.png "Boeing 747-8F Specs"
 
 [ball size]: http://en.wikipedia.org/wiki/Table_tennis#Ball
